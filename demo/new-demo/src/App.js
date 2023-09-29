@@ -1,9 +1,9 @@
 import { Component } from "react";
-import {Route, Switch, Redirect} from 'react-router-dom'
-import LoginPage from "./components/LoginRoute"
-import CartContext from "./context/CartContext"
+import { Route, Redirect, Switch } from "react-router-dom";
+import LoginPage from "./components/LoginRoute";
+import CartContext from "./context/CartContext";
 import "./App.css";
-import Home from "./components/HomeRoute"
+import Home from "./components/HomeRoute";
 
 class App extends Component {
   state = { isDarkTheme: false };
@@ -15,11 +15,16 @@ class App extends Component {
   render() {
     const { isDarkTheme } = this.state;
     return (
-      <Switch>
+      <CartContext.Provider value={{
+        isDarkTheme,
+        onChangeTheme: this.onChangeTheme
+      }}>
+        <Switch>
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/" component={Home}/>
-      </Switch>
-    )
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </CartContext.Provider>
+    );
   }
 }
 export default App;
