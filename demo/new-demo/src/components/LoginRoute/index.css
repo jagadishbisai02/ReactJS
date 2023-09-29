@@ -51,8 +51,8 @@
   padding: 5px 10px;
 }
 
-.inputs::placeholder{
-    color: #e2e0e0d7;
+.inputs::placeholder {
+  color: #e2e0e0d7;
 }
 
 .icons {
@@ -62,14 +62,14 @@
   transform: translateY(-25%);
 }
 
-.labels{
-    font-size: 20px;
-    font-family: "Roboto";
-    font-weight: 400;
-    color: #ffffff;
+.labels {
+  font-size: 20px;
+  font-family: "Roboto";
+  font-weight: 400;
+  color: #ffffff;
 }
 
-.login-btn{
+.login-btn {
   width: 100%;
   border: none;
   height: 25px;
@@ -82,4 +82,11 @@
   font-family: "Roboto";
   cursor: pointer;
   outline: none;
+}
+
+.error-msg {
+  font-size: 18px;
+  font-family: "Roboto";
+  font-weight: 400;
+  color: #fa2105;
 }

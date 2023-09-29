@@ -1,16 +1,28 @@
 import { Component } from "react";
+import {Redirect} from 'react-router-dom';
+import Cookies from "js-cookie";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import "./index.css";
 
 class LoginPage extends Component {
-  state = { username: "", password: "" };
+  state = { username: "", password: "", showSubmitError: false, errorMsg: "" };
 
-  getPassword = (event) => this.setState({ username: event.target.value });
+  getUsername = (event) => this.setState({ username: event.target.value });
 
-  getUsername = (event) => this.setState({ password: event.target.value });
+  getPassword = (event) => this.setState({ password: event.target.value });
 
-  onSumbitLoginForm = async (event) => {
+  onSubmitSuccess = (jwtToken) => {
+    const { history } = this.props;
+    Cookies.set("jwt_token", jwtToken, { expires: 1, path: "/" });
+    history.replace("/");
+  };
+
+  onSubmitFailure = (errorMsg) => {
+    this.setState({ showSubmitError: true, errorMsg });
+  };
+
+  onSubmitLoginFrom = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
     const userDetails = { username, password };
@@ -22,17 +34,26 @@ class LoginPage extends Component {
 
     const response = await fetch(loginUrl, options);
     const data = await response.json();
-    console.log(data);
+
+    if (response.ok) {
+      this.onSubmitSuccess(data.jwt_token);
+    } else {
+      this.onSubmitFailure(data.error_msg);
+    }
   };
 
   render() {
-    const { username, password } = this.state;
+    const { showSubmitError, errorMsg } = this.state;
+    const jwtToken = Cookies.get('jwt_token')
+    if(jwtToken !== undefined){
+      return <Redirect to='/'/>
+    }
 
     return (
       <div className="login-container">
         <div className="login-form">
           <h1 className="heading">Login Form</h1>
-          <form className="form-container" onSubmit={this.onSumbitLoginForm}>
+          <form className="form-container" onSubmit={this.onSubmitLoginFrom}>
             <label htmlFor="username" className="labels">
               Username:
             </label>
@@ -41,7 +62,7 @@ class LoginPage extends Component {
                 type="text"
                 className="inputs"
                 placeholder="username"
-                onChnage={this.getUsername}
+                onChange={this.getUsername}
               />
               <AiOutlineUser size={20} color="#ffffff" className="icons" />
             </div>
@@ -52,7 +73,7 @@ class LoginPage extends Component {
               <input
                 type="password"
                 className="inputs"
-                onChnage={this.getPassword}
+                onChange={this.getPassword}
                 placeholder="password"
               />
               <RiLockPasswordLine size={20} color="#ffffff" className="icons" />
@@ -60,6 +81,7 @@ class LoginPage extends Component {
             <button type="submit" className="login-btn">
               Login
             </button>
+            {showSubmitError && <p className="error-msg">***{errorMsg}</p>}
           </form>
         </div>
       </div>

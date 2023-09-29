@@ -1,6 +1,7 @@
 import { Component } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import LoginPage from "./components/LoginRoute";
+import Protected from "./components/ProtectedRoute"
 import CartContext from "./context/CartContext";
 import "./App.css";
 import Home from "./components/HomeRoute";
@@ -21,7 +22,7 @@ class App extends Component {
       }}>
         <Switch>
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/" component={Home} />
+          <Protected exact path="/" component={Home} />
         </Switch>
       </CartContext.Provider>
     );
