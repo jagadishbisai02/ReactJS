@@ -1,10 +1,10 @@
 import { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginPage from "./components/LoginRoute";
-import Protected from "./components/ProtectedRoute"
+import Home from "./components/HomeRoute";
+import ProtectedRoute from "./components/ProtectedRoute"
 import CartContext from "./context/CartContext";
 import "./App.css";
-import Home from "./components/HomeRoute";
 
 class App extends Component {
   state = { isDarkTheme: false };
@@ -22,7 +22,7 @@ class App extends Component {
       }}>
         <Switch>
           <Route exact path="/login" component={LoginPage} />
-          <Protected exact path="/" component={Home} />
+          <ProtectedRoute exact path="/" component={Home} />
         </Switch>
       </CartContext.Provider>
     );
