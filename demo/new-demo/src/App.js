@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginPage from "./components/LoginRoute";
 import Home from "./components/HomeRoute";
-import ProtectedRoute from "./components/ProtectedRoute"
+import ProtectedRoute from "./components/ProtectedRoute/protected"
 import CartContext from "./context/CartContext";
 import "./App.css";
 
