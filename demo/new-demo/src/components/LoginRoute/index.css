@@ -1,21 +1,35 @@
 .login-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 1520px;
+  margin: auto;
   background-image: url("https://res.cloudinary.com/df5wssoz1/image/upload/v1695954409/1000_F_506790264_N8BVZ9NLLRrTAShK6PADQmo0SZ4LUuJJ_zwtepg.jpg");
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+  @media screen and (max-width: 992px) {
+    flex-direction: row;
+  }
 }
 
 .login-form {
-  width: 420px;
+  width: 30%;
   background-color: transparent;
   border: 1px solid rgb(255, 255, 255, 0.2);
   backdrop-filter: blur(5px);
   box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
   border-radius: 15px;
   padding: 30px 40px;
+  @media screen and (max-width: 992px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .form-container {
@@ -26,11 +40,12 @@
 }
 
 .heading {
-  font-size: 25px;
-  font-family: "Roboto";
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
+  width: 150px;
+  margin-bottom: 15px;
+  @media screen and (min-width: 992px) {
+    width: 120px;
+    padding: 0px 125px;
+  }
 }
 
 .input-icons {
@@ -67,6 +82,9 @@
   font-family: "Roboto";
   font-weight: 400;
   color: #ffffff;
+  @media screen and (max-width: 992px) {
+    font-size: 16px;
+  }
 }
 
 .login-btn {

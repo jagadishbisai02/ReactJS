@@ -1,5 +1,5 @@
 import { Component } from "react";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -44,15 +44,19 @@ class LoginPage extends Component {
 
   render() {
     const { showSubmitError, errorMsg } = this.state;
-    const jwtToken = Cookies.get('jwt_token')
-    if(jwtToken !== undefined){
-      return <Redirect to='/'/>
+    const jwtToken = Cookies.get("jwt_token");
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />;
     }
 
     return (
       <div className="login-container">
         <div className="login-form">
-          <h1 className="heading">Login Form</h1>
+        <img
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+            alt="website logo"
+            className="heading"
+          />
           <form className="form-container" onSubmit={this.onSubmitLoginFrom}>
             <label htmlFor="username" className="labels">
               Username:
