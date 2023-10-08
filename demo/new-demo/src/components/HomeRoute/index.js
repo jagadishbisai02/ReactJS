@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Navbar from "../Navbar/navbar";
+import SideBar from "../SideBar";
 
 const apiStatusContants = {
   initial: "INITIAL",
@@ -17,7 +18,12 @@ class HomeRoute extends Component {
   };
 
   render() {
-    return <Navbar />;
+    return (
+      <>
+        <Navbar/>
+        <SideBar/>
+      </>
+    );
   }
 }
 

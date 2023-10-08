@@ -7,18 +7,24 @@ import CartContext from "./context/CartContext";
 import "./App.css";
 
 class App extends Component {
-  state = { isDarkTheme: false };
+  state = { isDarkTheme: false, activeTab: 'Home' };
 
   onChangeTheme = () => {
     this.setState((prev) => ({ isDarkTheme: !prev.isDarkTheme }));
   };
 
+  activeTabItem = item =>{
+    this.setState({activeTab: item})
+  }
+
   render() {
-    const { isDarkTheme } = this.state;
+    const { isDarkTheme, activeTab } = this.state;
     return (
       <CartContext.Provider value={{
         isDarkTheme,
-        onChangeTheme: this.onChangeTheme
+        onChangeTheme: this.onChangeTheme,
+        activeTab,
+        activeTabItem: this.activeTabItem,
       }}>
         <Switch>
           <Route exact path="/login" component={LoginPage} />
